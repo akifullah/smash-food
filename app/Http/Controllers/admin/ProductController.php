@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubItem;
+use App\Models\SubItemCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ProductController extends Controller
 {
@@ -29,10 +33,12 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // if(!isEmpty($request->manual_extra_section_count)){
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
             'price' => 'required',
         ]);
         if ($validator->fails()) {
@@ -50,10 +56,32 @@ class ProductController extends Controller
             $file->move(public_path('uploads/products/'), $filename);
             $product->image = $filename;
         }
+        $product->image = "asdfsd";
         $product->price = $request->price;
         $product->description = $request->description;
         $product->status = $request->status ?? 1;
         $product->save();
+
+        if ($request->has('manual_extra_section_count') && is_array($request->manual_extra_section_count)) {
+            foreach ($request->manual_extra_section_count as $index) {
+                $category = SubItemCategory::create([
+                    'section_order' => $request->manual_extra_section_order[$index],
+                    'section_title' => $request->manual_extra_section_title[$index],
+                    'section_type'  => $request->manual_extra_type[$index],
+                    'product_id'    => $product->id,
+                ]);
+
+                foreach ($request->manual_extra_details_count[$index] as $key => $item) {
+                    SubItem::create([
+                        'sub_item_category_id' => $category->id,
+                        'sub_items_titles'     => $request->manual_extra_title[$index][$key],
+                        'sub_items_price'      => $request->manual_extra_price[$index][$key],
+                        'product_id'           => $product->id,
+                    ]);
+                }
+            }
+        }
+
         notify()->success('Product created successfully');
         return redirect()->route('admin.products.index');
     }

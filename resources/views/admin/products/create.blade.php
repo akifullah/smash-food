@@ -113,7 +113,7 @@
 
                                     <div class="col-2 form-group mt-3">
                                         <label for="Name"> Extra Section Order:</label>
-                                        <input type="text" class="form-control " name="manual_extra_section_order["
+                                        <input type="text" class="form-control " name="manual_extra_section_order[]"
                                             value="">
                                     </div>
                                     <div class="col-6 form-group mt-3">
@@ -143,7 +143,7 @@
                                         </div>
                                         <div class="col-4 form-group mt-3">
                                             <label for="Name">Extra Item Image:</label>
-                                            <input type="file" class="form-control " name"manual_extra_image[0][]"
+                                            <input type="file" class="form-control " name="manual_extra_image[0][]"
                                                 value="">
                                         </div>
                                         <div class="col-2 form-group mt-3" style="padding-top: 25px;">
@@ -154,7 +154,7 @@
 
                                 </div>
                                 <div class="form-group mt-3 col-6">
-                                    <button class="btn btn-sm btn-success" onclick="add_new_extra_item(0)">Add new extra
+                                    <button type="button" class="btn btn-sm btn-success" onclick="add_new_extra_item(0)">Add new extra
                                         item</button>
                                 </div>
                             </div>
@@ -271,7 +271,7 @@
 
                 </div>
                 <div class="form-group mt-3 col-6">
-                    <button  class="btn btn-sm btn-success" onclick="add_new_extra_item(` + (
+                    <button type="button"  class="btn btn-sm bg-success btn-success" onclick="add_new_extra_item(` + (
                     separate_extra) + `)">Add new extra item</button>
                 </div>
                 `);
