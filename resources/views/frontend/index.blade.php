@@ -259,16 +259,16 @@
         }
 
         /* STICKY HEADER
-                    .sticky-header-wrap{
-                        background-color: #151515;
-                    }
-                    .sticky-header-wrap .logo img{
-                        width: 80px;
-                    }
-                    .sticky-header-wrap ul li a{
-                        text-shadow: none !important;
-                        color: #fff;
-                    } */
+                        .sticky-header-wrap{
+                            background-color: #151515;
+                        }
+                        .sticky-header-wrap .logo img{
+                            width: 80px;
+                        }
+                        .sticky-header-wrap ul li a{
+                            text-shadow: none !important;
+                            color: #fff;
+                        } */
 
         .cart-section {
             padding: 50px 20px;
@@ -370,18 +370,18 @@
         }
 
         /* .cart-checkout-btn {
-                    text-align: right;
-                } */
+                        text-align: right;
+                    } */
 
         /* .cart-checkout-btn a {
-                    font-size: 24px;
-                    display: inline-block;
-                    font-weight: 500;
-                    padding: 10px 25px;
-                    width: 150px;
-                    margin-left: auto;
-                    text-align: center;
-                } */
+                        font-size: 24px;
+                        display: inline-block;
+                        font-weight: 500;
+                        padding: 10px 25px;
+                        width: 150px;
+                        margin-left: auto;
+                        text-align: center;
+                    } */
 
         .carts-item-wrap {
             margin-top: 30px;
@@ -991,138 +991,15 @@
 
 
 
-{{-- <header class="header-wrapper  header-layout2 bg-dark dark-style py-2 py-lg-0 px-xl-115 " id="main-header">
-
-
-
-    <div class="container-fluid position-relative" id="header-menu">
-        <div class="d-flex justy-content-between align-items-center">
-            <div class="">
-                <div class="header-logo">
-                    <a href="https://smashinit.co.uk"><img
-                            src="https://smashinit.co.uk/frontend/assets/img/Smash-in-it-logo.png" alt="Logo"></a>
-                </div>
-            </div>
-            <div class="  menu-wrap  d-flex justy-content-between">
-                <nav id="main-menu" class="main-menu menu-style1 link-inherit mx-auto text-xl-left mobile-menu-active ">
-                    <ul class="p-0 text-left text-lg-center">
-
-                        <li>
-                            <a class="" href="https://smashinit.co.uk/shop">Our
-                                Menu</a>
-
-                        </li>
-                        <li>
-                            <a class="" href="https://smashinit.co.uk/about">About</a>
-
-                        </li>
-                        <!-- <li>
-                            <a href="https://smashinit.co.uk/blog">Blog</a>
-
-                        </li> -->
-                        <li>
-                            <a class="" href="https://smashinit.co.uk/contact">Contact</a>
-
-                        </li>
-                        <li>
-                            <a class="" href="https://smashinit.co.uk/gallery">Gallery</a>
-
-                        </li>
-
-                        <li class="d-block d-lg-none">
-                            <a class="" href="https://smashinit.co.uk/user-login"><i class="fas fa-user mr-1"></i>
-                                Sign in</a>
-                        </li>
-
-
-
-
-                        <li>
-                            <a href="https://smashinit.co.uk/shop" class="m-btn d-none d-lg-block text-uppercase">Order
-                                Online</a>
-
-                        </li>
-
-
-
-                    </ul>
-                </nav>
-                <div class="d-flex align-items-center ml-auto">
-
-
-                    <a href="https://smashinit.co.uk/shop" class="m-btn d-block d-lg-none text-uppercase mx-3">Order
-                        Online</a>
-
-
-
-
-
-
-
-                    <button type="button" id="menu-popup-handle" class=" d-block text-theme  d-lg-none">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="d-none d-lg-block right-btn-wrap">
-                <div class="header-right d-none d-lg-flex align-items-center justify-content-end">
-
-                    <div class="header-btn  d-flex align-items-center ml-auto ">
-
-
-                        <a class="" href="https://smashinit.co.uk/user-login"><i class="fas fa-user mr-1"></i>
-                            Sign in</a>
-
-
-
-
-                        <!-- <a href="tel:01613708094" class="tel-no">01613708094</a>
-                        <a href="tel:01613708094" class="call-us-btn"><i class="fas fa-phone-alt"></i></a> -->
-                        <!-- <a href="#" class="icon-btn text-theme mr-15 searchBoxTggler"><i class="fal fa-search"></i></a> -->
-
-
-                        <div class="cart-btn-wrap">
-
-                            <a href="https://smashinit.co.uk/cart" class="icon-btn text-theme  cart-btn ">
-                                <!-- <span class="number bg-theme">9</span> -->
-                                <i class="fas fa-shopping-cart "></i>
-                                <span id="header_total">&pound;0 / 0
-                                    item</span>
-                            </a>
-
-                            <div class="sideCard cart-section">
-
-                                <h3 class="basket">Your Basket</h3>
-                                <div class="row cart-wrapper px-3">
-                                    <div class="col-12 ">
-                                        <div class="empty-cart text-center">
-                                            <h2 class="text-upppercase">Your basket is Empty!</h2>
-
-                                            <!-- <a href="https://smashinit.co.uk/shop">continue shopping</a> -->
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header> --}}
-
-
 
 
 @section('content')
     <div class="wrapper">
+
+
         <!--==============================
-            Hero Area
-        ==============================-->
+                Hero Area
+            ==============================-->
 
         <section class="hero-section">
             <div class="hero-slide owl-carousel owl-theme">
@@ -1251,20 +1128,20 @@
 
         <!-- FRACHISE SECTION START -->
         <!-- <section class="franchise-section overlay">
-            <div class="container">
-                <div class="franchise-text text-center">
-                    <h2><span>FRANCHISE</span> <br /> OPPORTUNITIES</h2>
-                    <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
-                        to become part of our network. We support our franchise partners with a programme tailor-made to
-                        answer your every need. From store location, design and fitting to staff training and sales plans.
-                    </p>
+                <div class="container">
+                    <div class="franchise-text text-center">
+                        <h2><span>FRANCHISE</span> <br /> OPPORTUNITIES</h2>
+                        <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
+                            to become part of our network. We support our franchise partners with a programme tailor-made to
+                            answer your every need. From store location, design and fitting to staff training and sales plans.
+                        </p>
 
-                    <a href="/about">
-                        Learn More
-                    </a>
+                        <a href="/about">
+                            Learn More
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </section> -->
+            </section> -->
         <!-- FRACHISE SECTION END -->
 
         <!-- JOIN SECTION START -->
@@ -1298,69 +1175,72 @@
 
         <!-- ABOUT SECTION START -->
         <!-- <section class="franchise-section about-section overlay">
-            <div class="container">
-                <div class="franchise-text text-center">
-                    <h2><span>ABOUT</span></h2>
-                    <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
-                        to become part of our network. We support our franchise partners with a programme tailor-made to
-                        answer your every need. From store location, design and fitting to staff training and sales plans.
-                    </p>
+                <div class="container">
+                    <div class="franchise-text text-center">
+                        <h2><span>ABOUT</span></h2>
+                        <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
+                            to become part of our network. We support our franchise partners with a programme tailor-made to
+                            answer your every need. From store location, design and fitting to staff training and sales plans.
+                        </p>
 
-                    <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
-                        to become part of our network. We support our franchise partners with a programme tailor-made to
-                        answer your every need. From store location, design and fitting to staff training and sales plans.
-                    </p>
+                        <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
+                            to become part of our network. We support our franchise partners with a programme tailor-made to
+                            answer your every need. From store location, design and fitting to staff training and sales plans.
+                        </p>
 
-                    <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
-                        to become part of our network. We support our franchise partners with a programme tailor-made to
-                        answer your every need. From store location, design and fitting to staff training and sales plans.
-                    </p>
+                        <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
+                            to become part of our network. We support our franchise partners with a programme tailor-made to
+                            answer your every need. From store location, design and fitting to staff training and sales plans.
+                        </p>
 
-                    <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
-                        to become part of our network. We support our franchise partners with a programme tailor-made to
-                        answer your every need. From store location, design and fitting to staff training and sales plans.
-                    </p>
+                        <p>If you share our vision as well as our passion, we are looking for like minded individuals or teams
+                            to become part of our network. We support our franchise partners with a programme tailor-made to
+                            answer your every need. From store location, design and fitting to staff training and sales plans.
+                        </p>
 
-                    <a href="/about">
-                        Learn More
-                    </a>
+                        <a href="/about">
+                            Learn More
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </section> -->
+            </section> -->
         <!-- ABOUT SECTION END -->
     </div>
 @endsection
-<!-- JQUERY CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- OWL CAROUSEL JS CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-<script>
-    $('.hero-slide').owlCarousel({
-        loop: true,
-        margin: 0,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        smartSpeed: 1000,
-        nav: false,
-        dots: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 1
-            },
-            1000: {
-                items: 1
+@section('js')
+    <!-- JQUERY CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- OWL CAROUSEL JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+        $('.hero-slide').owlCarousel({
+            loop: true,
+            margin: 0,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            smartSpeed: 1000,
+            nav: false,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
             }
-        }
-    })
-</script>
+        })
+    </script>
+@endsection
 
 
 
-<style>
+{{-- <style>
     #footer {
         background-color: #E0E0E0;
     }
@@ -1570,132 +1450,4 @@
             font-size: 14px;
         }
     }
-</style>
-<!--==============================
-   Footer Area
- ==============================-->
-
-
-
-{{-- <div>
-    <!--==============================
-        Subscribe Form
-    ==============================-->
-    <!-- <section class="vs-subscribe-wrapper vs-subscribe-layout2 py-lg-100 py-40">
-            <div class="container">
-                <div class="row no-gutters justify-content-center">
-                    <div class="col-lg-6 col-xl-5">
-                        <div class="vs-subscribe mb-4 mb-xl-0 text-center text-xl-left">
-                            <h2 class="text-white mb-1">Subscribe to our newsletter</h2>
-                            <p class="text-white text-md mb-0">Get updates for new products</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-7 pl-xl-5">
-                        <form action="#" class="vs-subscribe-form subscribe-form-style1 d-sm-flex ">
-                            <span class="subscribe-form-icon"><i class="fal fa-envelope text-title"></i></span>
-                            <input type="email" class="form-control" placeholder="Your Email Address">
-                            <button type="submit" class="vs-btn style1">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-    <footer class="footer-wrapper footer-layout1 dark-footer " id="footer">
-        <div
-            class="footer-widget-wrapper border-top footer-widget-layout1 pt-40 pt-lg-100 pb-10 pb-lg-70 z-index-common">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-8 col-xl-8">
-                        <div class="widget widget_nav_menu   ">
-                            <div class="menu-all-pages-container">
-                                <div class="row">
-                                    <div class="col-sm-4 col-md-4 mb-4 mb-sm-5">
-                                        <h3>Useful Links</h3>
-                                        <ul class="menu">
-                                            <li><a href="/category-items/1">Meals</a></li>
-                                            <li><a href="/category-items/2">Smash Burgers</a></li>
-                                            <li><a href="/category-items/3">Chicken in Mix</a></li>
-                                            <li><a href="/category-items/4">Classic Burgers</a></li>
-                                            <li><a href="/category-items/5">Loaded Fries</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-4 col-md-4 mb-4 mb-sm-5">
-                                        <h3>Quick Links</h3>
-
-                                        <ul class="menu">
-                                            <li><a href="/category-items/6">Wraps</a></li>
-                                            <li><a href="/category-items/7">Chicken Tinders</a></li>
-                                            <li><a href="/category-items/8">Premium Sides</a></li>
-                                            <li><a href="/category-items/9">Kids</a></li>
-                                            <li><a href="/category-items/10">Fries</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-4 col-md-4 mb-4 mb-sm-5">
-                                        <h3>Address</h3>
-
-                                        <p class="address">
-                                            302 Edge Lane,
-                                            Droylsden,
-                                            Manchester
-                                            M43 6JH
-
-                                        </p>
-                                        <p class="address">Phone: <a href="tel:01612708094"
-                                                style="color: black;">0161 270 8094</a></p>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-xl-4">
-                        <div class="widget pt-0">
-                            <div class="vs-widget-about text-center text-sm-left">
-                                <h3>Follow Us</h3>
-                                <div class="social-links links-has-border">
-                                    <ul class="justify-content-center justify-sm-content-left">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="m-0" />
-        <div class="ft-bottom">
-            <div class="d-flex flex-column align-items-center justify-content-center ">
-                <div class="links mx-auto">
-                    <ul class="d-flex align-items-center justify-content-center flex-wrap list-unstyled ">
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">Service Disclaimer</a></li>
-                    </ul>
-                </div>
-
-                <p>Smash 'IN' IT &copy; 2024. All Rights Reserved</p>
-            </div>
-        </div>
-        <!-- <div class="footer-copyright text-center bg-theme py-3 link-inherit z-index-common">
-            <div class="container">
-                <p class="text-white mb-0">Copyright <i class="fal fa-copyright"></i> 2022 <a
-                        href="https://smashinit.co.uk/">SMASH 'IN' IT</a> - All rights reserved by <a
-                        href="https://webspires.co.uk">Webspires</a>.</p>
-            </div>
-        </div> -->
-    </footer>
-</div> --}}
-
-
-<!--********************************
-     Code End  Here
- ******************************** -->
+</style> --}}

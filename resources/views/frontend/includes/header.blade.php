@@ -63,9 +63,10 @@
     }
 
     .dark-style a:hover,
-    #header-menu .call-us-btn a:hover{
-        color: #FFD715 ;
+    #header-menu .call-us-btn a:hover {
+        color: #FFD715;
     }
+
     #header-menu .call-us-btn:hover {
         border-color: #FFD715;
         background-color: #FFD715;
@@ -151,7 +152,7 @@
 
     #header-menu .menu-wrap {
         /* min-width: 600px; */
-        margin-right: auto ;
+        margin-right: auto;
         padding-left: 80px;
     }
 
@@ -245,7 +246,7 @@
         }
     }
 
-    /* STICKY HEADER 
+    /* STICKY HEADER
         .sticky-header-wrap{
             background-color: #151515;
         }
@@ -511,7 +512,7 @@
         opacity: 1;
         display: none;
         z-index: 100;
-        border: 1px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 10px;
     }
 
@@ -520,16 +521,12 @@
         display: block;
     }
 
-    .sideCard .basket{
+    .sideCard .basket {
         color: #FFD715;
         font-size: 24px;
         font-weight: 500;
         margin-top: 10px;
     }
-
-
-    
-    
 </style>
 
 @php
@@ -537,7 +534,6 @@
     $items = 0;
     $cart = session()->get('cart', []);
     foreach ($cart as $c) {
-
         if ($c['item_id']) {
             $total += $c['total'];
             $items++;
@@ -553,7 +549,7 @@
         <div class="d-flex justy-content-between align-items-center">
             <div class="">
                 <div class="header-logo">
-                    <a href="{{route('home.index')}}"><img src="{{asset('frontend/assets/img/Smash-in-it-logo.png')}}"
+                    <a href="{{ route('home.index') }}"><img src="{{ asset('frontend/assets/img/Smash-in-it-logo.png') }}"
                             alt="Logo"></a>
                 </div>
             </div>
@@ -562,24 +558,26 @@
                     <ul class="p-0 text-left text-lg-center">
 
                         <li>
-                            <a class="{{ request()->routeIs('home.category') ? 'active' : '' }}" href="{{route('home.category')}}">Our
+                            <a class="{{ request()->routeIs('home.category') ? 'active' : '' }}"
+                                href="{{ route('home.category') }}">Our
                                 Menu</a>
 
                         </li>
-                        {{-- <li>
+                        <li>
                             <a class="{{ request()->routeIs('about') ? 'active' : '' }}"
-                                href="{{route('about')}}">About</a>
+                                href="{{ route('about') }}">About</a>
 
-                        </li> --}}
+                        </li>
                         <!-- <li>
                             {{-- <a href="{{route('blog')}}">Blog</a> --}}
 
                         </li> -->
-                        {{-- <li>
+                        <li>
                             <a class="{{ request()->routeIs('contact') ? 'active' : '' }}"
-                                href="{{route('contact')}}">Contact</a>
+                                href="{{ route('contact') }}">Contact</a>
 
                         </li>
+                        {{-- 
                         <li>
                             <a class="{{ request()->routeIs('gallery') ? 'active' : '' }}"
                                 href="{{route('gallery')}}">Gallery</a>
@@ -604,7 +602,8 @@
 
 
                         <li>
-                            <a href="{{route('home.category')}}" class="m-btn d-none d-lg-block text-uppercase">Order Online</a>
+                            <a href="{{ route('home.category') }}" class="m-btn d-none d-lg-block text-uppercase">Order
+                                Online</a>
 
                         </li>
 
@@ -683,7 +682,7 @@
                                         $total = 0;
                                         $items = 0;
                                     @endphp
-                                    @if(count($cart) > 0)
+                                    @if (count($cart) > 0)
                                         <div class="">
                                             <div class="carts-item-wrap">
 
@@ -691,7 +690,7 @@
 
                                                 <ul class="p-0">
 
-                                                    @foreach($cart as $c)
+                                                    @foreach ($cart as $c)
                                                         @php        $item = \App\Models\Item::findOrFail($c['item_id']); @endphp
                                                         <li class="cart_item_li_{{$c['item_id']}}">
                                                             <div class="item-image">
