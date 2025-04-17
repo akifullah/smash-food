@@ -75,8 +75,8 @@ $(function () {
         }
     };
 
-    var chart_column_basic = new ApexCharts(document.querySelector("#sales-overview"), options_Sales_Overview);
-    chart_column_basic.render();
+    // var chart_column_basic = new ApexCharts(document.querySelector("#sales-overview"), options_Sales_Overview);
+    // chart_column_basic.render();
     
     // -----------------------------------------------------------------------
     // Newsletter
@@ -165,8 +165,8 @@ $(function () {
         },
     };
 
-    var chart_area_spline = new ApexCharts(document.querySelector("#newsletter-campaign"), option_Newsletter_Campaign);
-    chart_area_spline.render();
+    // var chart_area_spline = new ApexCharts(document.querySelector("#newsletter-campaign"), option_Newsletter_Campaign);
+    // chart_area_spline.render();
 
     // -----------------------------------------------------------------------
     // This is for the map
@@ -276,8 +276,8 @@ $(function () {
         },
     };
 
-    var chart_line_basic = new ApexCharts(document.querySelector("#bandwidth-usage"), option_Bandwidth_usage);
-    chart_line_basic.render();
+    // var chart_line_basic = new ApexCharts(document.querySelector("#bandwidth-usage"), option_Bandwidth_usage);
+    // chart_line_basic.render();
     
     // -----------------------------------------------------------------------
     // Download count
@@ -358,8 +358,8 @@ $(function () {
         }
     };
 
-    var chart_column_basic = new ApexCharts(document.querySelector("#download-count"), option_Download_count);
-    chart_column_basic.render();    
+    // var chart_column_basic = new ApexCharts(document.querySelector("#download-count"), option_Download_count);
+    // chart_column_basic.render();    
    
 });    
     

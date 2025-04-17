@@ -11,19 +11,20 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="border-bottom title-part-padding">
-                                    <h4 class="card-title mb-0" style="display: inline-block;">Create Category</h4>
+                                    <h4 class="card-title mb-0" style="display: inline-block;">Edit Category</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('admin.categories.store') }}" method="post"
+                                    <form action="{{ route('admin.categories.update', $category->id) }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group col-6">
                                             <label for="">Category Name</label>
-                                            <input type="text" name="name" class="form-control" required>
+                                            <input type="text" name="name" value="{{ $category->name }}" class="form-control" required>
                                         </div>
                                         <div class="col-6 form-group mt-3">
                                             <label for="image">Image:</label>
                                             <input type="file" class="form-control" name="image" id="image">
+                                            <img src="{{ asset("uploads/categories/".$category->image) }}" alt="Category Image" class="img-fluid mt-2">
                                         </div>
                                         <div class="form-group mt-3 col-6">
                                             <button class="btn btn-success">Save</button>

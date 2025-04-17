@@ -37,7 +37,24 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    @yield("style")
+    @yield('style')
+    <style>
+        @keyframes toast-slide-in {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        .notify {
+            animation: toast-slide-in 0.4s ease-out;
+            z-index: 9999 !important;
+        }
+    </style>
 </head>
 
 
@@ -210,7 +227,7 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                @yield("content")
+                @yield('content')
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -226,6 +243,8 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
+    
     <!-- Core JS Libraries -->
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -239,19 +258,23 @@
     <script src="{{ asset('js/feather.min.js') }}"></script>
     <script src="{{ asset('js/custom.min.js') }}"></script>
 
-    <script src="{{asset("assets/extra-libs/datatables.net/js/jquery.dataTables.min.js")}}"></script>
-<script src="{{asset("assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js")}}"></script>
-<script src="{{asset("dist/js/pages/datatable/datatable-basic.init.js")}}"></script>
+    {{-- <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script> --}}
 
     <!-- Charts and Maps -->
-    <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/jvectormap/jquery-jvectormap.min.js') }}"></script>
-    <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-us-aea-en.js') }}"></script>
+    {{-- <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/libs/jvectormap/jquery-jvectormap.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-us-aea-en.js') }}"></script> --}}
 
     <!-- Dashboard Script -->
-    <script src="{{ asset('dist/js/pages/dashboards/dashboard3.js') }}"></script>
+    {{-- <script src="{{ asset('dist/js/pages/dashboards/dashboard3.js') }}"></script> --}}
 
     @yield('js')
+
+    <x-notify::notify />
+    @notifyCss
+    @notifyJs
 
 </body>
 

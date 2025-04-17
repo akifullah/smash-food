@@ -15,7 +15,7 @@
                 <div class="card-body">
 
 
-                    <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row mt-3">
                             <h3>Item Information</h3>
@@ -24,7 +24,7 @@
                                 <select name="category_id" class="form-select" id="category_id">
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $category)
-                                        <option {{ old('category_id') == $category->id ? 'selected' : '' }}
+                                        <option {{ $product->category_id == $category->id ? 'selected' : '' }}
                                             value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
@@ -35,7 +35,7 @@
                             <div class="col-6 form-group">
                                 <label for="Name"> Name:</label>
                                 <input type="text" id="name" name="name" class="form-control"
-                                    placeholder="Item name" value="{{ old('name') }}" required>
+                                    placeholder="Item name" value="{{ $product->name }}" required>
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -44,7 +44,7 @@
                             <div class="col-6 form-group mt-3">
                                 <label for="price">Price:</label>
                                 <input type="text" id="price" name="price" class="form-control"
-                                    placeholder="Item Price" value="{{ old('price') }}" required>
+                                    placeholder="Item Price" value="{{ $product->price }}" required>
                                 @error('price')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -54,6 +54,7 @@
                             <div class="col-6 form-group mt-3">
                                 <label for="image">Item Image:</label>
                                 <input type="file" class="form-control" name="image" id="image">
+                                <img src="{{ asset('uploads/products/'.$product->image) }}" alt="" style="width: 100px; height: 100px;">
                                 @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -172,7 +173,7 @@
 
                             <div class="col-12 mt-5">
                                 <label for="description">Item Description:</label>
-                                <textarea name="description" id="description" class="summernote"></textarea>
+                                <textarea name="description" id="description" class="summernote">{{ $product->description }}</textarea>
                             </div>
                         </div>
 

@@ -62,16 +62,16 @@ $('#india').vectorMap({
         });
 
 
-        $('#usa').vectorMap({
-            map : 'us_aea_en',
-            backgroundColor : 'transparent',
-            zoomOnScroll: false,
-            regionStyle : {
-                initial : {
-                    fill : '#7460ee'
-                }
-            }
-        });
+        // $('#usa').vectorMap({
+        //     map : 'us_aea_en',
+        //     backgroundColor : 'transparent',
+        //     zoomOnScroll: false,
+        //     regionStyle : {
+        //         initial : {
+        //             fill : '#7460ee'
+        //         }
+        //     }
+        // });
         
        
         
