@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('sub_item_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->string("section_title");
-            $table->string("section_type");
-            $table->string("section_order")->nullable();
+            $table->string("name");
+            $table->string("image")->nullable();
+            $table->boolean("status")->default(1)->comment('1 = Active, 0 = Inactive');
             $table->timestamps();
         });
     }

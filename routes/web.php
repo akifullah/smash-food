@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\admin\SubItemCategory;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -44,6 +45,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
         Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
         Route::get('/status/{id}', [CategoryController::class, 'status'])->name('admin.categories.status');
+    });
+
+    // SUB ITEMS CATEGORIES
+    Route::prefix("sub-item-categories")->controller(SubItemCategory::class)->group(function(){
+        Route::get("/", "index")->name("sub.item.category.index");
+        Route::post("/create", "store")->name("sub.item.category.store");
     });
 
     // Products

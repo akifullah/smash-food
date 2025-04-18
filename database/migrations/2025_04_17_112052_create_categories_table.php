@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name", 255);
             $table->string("image");
-            $table->boolean("status")->default(1)->comment('1 = Active, 0 = Inactive');;
+            $table->boolean("status")->default(1)->comment('1 = Active, 0 = Inactive');
             $table->timestamps();
         });
     }

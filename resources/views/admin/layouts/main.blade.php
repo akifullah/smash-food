@@ -181,6 +181,12 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a href="{{ route('sub.item.category.index') }}" class="sidebar-link">
+                                <i class="mdi mdi-adjust"></i>
+                                <span class="hide-menu">Sub Item Categories </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="{{ route('admin.products.index') }}" class="sidebar-link">
                                 <i class="mdi mdi-adjust"></i>
                                 <span class="hide-menu"> Products </span>
