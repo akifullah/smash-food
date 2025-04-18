@@ -33,12 +33,11 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // if(!isEmpty($request->manual_extra_section_count)){
-
+       
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
-            // 'image' => 'required',
+            'image' => 'required',
             'price' => 'required',
         ]);
         if ($validator->fails()) {
@@ -56,7 +55,6 @@ class ProductController extends Controller
             $file->move(public_path('uploads/products/'), $filename);
             $product->image = $filename;
         }
-        $product->image = "asdfsd";
         $product->price = $request->price;
         $product->description = $request->description;
         $product->status = $request->status ?? 1;
@@ -72,10 +70,18 @@ class ProductController extends Controller
                 ]);
 
                 foreach ($request->manual_extra_details_count[$index] as $key => $item) {
+                    if ($request->manual_extra_image[$index][$key]) {
+                        $file = $request->file('manual_extra_image')[$index][$key];
+                        
+                        $filename = time() . '_' . $index . '_' . $key . '.' . $file->getClientOriginalExtension();
+                        $file->move(public_path('uploads/products/sub_items/'), $filename);
+                        $image = $filename;
+                    }
                     SubItem::create([
                         'sub_item_category_id' => $category->id,
-                        'sub_items_titles'     => $request->manual_extra_title[$index][$key],
+                        'sub_items_title'     => $request->manual_extra_title[$index][$key],
                         'sub_items_price'      => $request->manual_extra_price[$index][$key],
+                        'sub_items_image'     => $image ?? "",
                         'product_id'           => $product->id,
                     ]);
                 }
@@ -87,7 +93,7 @@ class ProductController extends Controller
     }
     public function edit($id)
     {
-        $data["product"] = Product::find($id);
+        $data["product"] = Product::with('subItemCategory','subItemCategory.subItem')->find($id);
         $data["categories"] = Category::whereStatus(1)->get();
         return view("admin.products.edit", $data);
     }

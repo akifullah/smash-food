@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                             <div class="row mt-5" id="manual_extra_section"
-                                style="border: 1px solid #efefef;border-radius: 10px;padding: 10px;margin: 0;display:none;">
+                                style="border: 1px solid #efefef;border-radius: 10px;padding: 10px;margin: 0;">
                                 <div class="row mb-3" id="manual_extra_section_row_0">
 
                                     <div class="col-2 form-group mt-3">
@@ -155,7 +155,7 @@
 
                                 </div>
                                 <div class="form-group mt-3 col-6">
-                                    <button class="btn btn-sm btn-success" onclick="add_new_extra_item(0)">Add new extra
+                                    <button type="button" class="btn btn-sm btn-success" onclick="add_new_extra_item(0)">Add new extra
                                         item</button>
                                 </div>
                             </div>
