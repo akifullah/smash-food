@@ -11,17 +11,37 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="border-bottom title-part-padding">
-                                    <h4 class="card-title mb-0" style="display: inline-block;">Create Sub Item Category</h4>
+                                    <h4 class="card-title mb-0" style="display: inline-block;">Create Sub Item</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form id="subItemCateForm" enctype="multipart/form-data" method="post"
+                                    <form id="subItemForm" enctype="multipart/form-data" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="id" value="0">
                                         <div class="row">
+
+                                            <div class="col-sm-6 form-group">
+                                                <label for="Name">Sub Item Category:</label>
+                                                <select name="sub_item_category_id" class="form-select"
+                                                    id="sub_item_category_id">
+                                                    <option>Select Category</option>
+                                                    @foreach ($subItemCategories as $category)
+                                                        <option
+                                                            {{ old('sub_item_category_id') == $category->id ? 'selected' : '' }}
+                                                            value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('sub_item_category_id')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                             <div class="form-group col-md-6">
-                                                <label for="">Sub Item Category Name</label>
+                                                <label for="">Sub Item Name</label>
                                                 <input type="text" name="name" class="form-control" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Price</label>
+                                                <input type="text" name="price" class="form-control" required>
                                             </div>
                                             <div class="col-md-6 form-group ">
                                                 <label for="image">Image:</label>
@@ -59,47 +79,45 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table id="multi_col_order" class="table table-bordered display" style="width:100%">
+                                        <table id="multi_col_order" class="table table-bordered display " style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Category Image</th>
                                                     <th>Category Name</th>
-                                                    {{-- <th>Items</th> --}}
+                                                    <th>Items Name</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse($subItemCategories as $key => $category)
+                                                @forelse($subItems as $key => $subItem)
                                                     <tr>
                                                         <td>{{ $key + 1 }}</td>
                                                         <td>
-                                                            <img src="{{ asset($category->image) }}" width="100" />
+                                                            <img src="{{ asset($subItem->image) }}" width="100" />
                                                         </td>
-                                                        <td>{{ $category->name }}</td>
-
-
+                                                        <td>{{ $subItem->name }}</td>
+                                                        <td>{{ $subItem->SubItemCategory->name }}</td>
                                                         <td>
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    id="flexSwitchCheck{{ $category->id }}"
-                                                                    {{ $category->status ? 'checked' : '' }}
-                                                                    data-category-id="{{ $category->id }}"
-                                                                    onclick="changeStatus({{ $category->id }})">
+                                                                    id="flexSwitchCheck{{ $subItem->id }}"
+                                                                    {{ $subItem->status ? 'checked' : '' }}
+                                                                    data-subitem-id="{{ $subItem->id }}"
+                                                                    onclick="changeStatus({{ $subItem->id }})">
                                                             </div>
                                                         </td>
-
                                                         <td>
                                                             <button class="btn btn-xs btn-warning"
-                                                                onclick="editSubItemCategory({{ $category->id }})">Edit</button>
+                                                                onclick="editSubItem({{ $subItem->id }})">Edit</button>
                                                             <button class="btn btn-xs btn-danger"
-                                                                onclick="deleteSubItemCategory({{ $category->id }})">Delete</button>
+                                                                onclick="deleteSubItem({{ $subItem->id }})">Delete</button>
                                                         </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5" class="text-center">No categories found</td>
+                                                        <td colspan="6" class="text-center">No sub items found</td>
                                                     </tr>
                                                 @endforelse
 
@@ -120,12 +138,12 @@
 @section('js')
     <script>
         // ADD SUB ITEM CATEGORIES
-        $("#subItemCateForm").submit(function(e) {
+        $("#subItemForm").submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
 
             $.ajax({
-                url: "{{ route('sub.item.category.store') }}",
+                url: "{{ route('admin.subitem.store') }}",
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -139,7 +157,7 @@
                         alert("Something goes wrong.");
                     }
                     // Show success notification
-                    notify('Sub Item Category created successfully', 'success');
+                    notify('Sub Item created successfully', 'success');
 
                     // Optional: Reload the page or update the list
                     // location.reload();
@@ -151,23 +169,25 @@
             });
         });
 
-        function editSubItemCategory(id) {
+        function editSubItem(id) {
             $.ajax({
-                url: "{{ route('sub.item.category.edit', ':id') }}".replace(':id', id),
+                url: "{{ route('admin.subitem.edit', ':id') }}".replace(':id', id),
                 type: "GET",
                 success: function(response) {
                     if (response.success) {
                         // Handle the response data for editing
                         console.log(response.data);
                         const data = response.data;
-                        $('#subItemCateForm input[name="id"]').val(data.id);
-                        $('#subItemCateForm input[name="name"]').val(data.name);
-                        $('#subItemCateForm input[name="image"]').val(data.image);
-                        $('#subItemCateForm input[name="status"]').prop('checked', data.status);
-                        if (data.image) {
-                            $('#img').attr('src', '{{ asset('') }}' + data.image).show();
-                        } else {
-                            $('#img').hide();
+                        // Populate form fields with the response data
+                        $('input[name="id"]').val(data.subItem.id);
+                        $('select[name="sub_item_category_id"]').val(data.subItem.sub_item_category_id);
+                        $('input[name="name"]').val(data.subItem.name);
+                        $('input[name="price"]').val(data.subItem.price);
+                        $('input[name="status"]').prop('checked', data.subItem.status == 1);
+                        
+                        // Update image preview if exists
+                        if (data.subItem.image) {
+                            $('#img').attr('src', '/' + data.subItem.image);
                         }
                         window.scrollTo({
                             top: 0,
@@ -215,10 +235,10 @@
         }
 
         // CREATE A DELETE 
-        function deleteSubItemCategory(id) {
-            if (confirm('Are you sure you want to delete this sub item category?')) {
+        function deleteSubItem(id) {
+            if (confirm('Are you sure you want to delete?')) {
                 $.ajax({
-                    url: "{{ route('sub.item.category.delete') }}",
+                    url: "{{ route('admin.subitem.delete') }}",
                     type: "POST",
                     data: {
                         id: id,
@@ -229,7 +249,7 @@
                             // Remove the deleted category row from the table
                             window.location.reload();
                             // Show success notification
-                            notify('Sub Item Category deleted successfully', 'success');
+                            notify('Sub Item deleted successfully', 'success');
                         } else {
                             // Show error notification
                             notify('Error: ' + response.message, 'error');

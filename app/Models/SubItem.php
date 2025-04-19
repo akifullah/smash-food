@@ -11,4 +11,8 @@ class SubItem extends Model
 
     // Allow mass assignment for all attributes
     protected $guarded = [];
+
+    public function SubItemCategory(){
+        return $this->belongsTo(SubItemCategory::class);
+    }
 }

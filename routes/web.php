@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\admin\SubItemCategory;
+use App\Http\Controllers\admin\SubItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -51,6 +52,18 @@ Route::prefix('admin')->group(function () {
     Route::prefix("sub-item-categories")->controller(SubItemCategory::class)->group(function(){
         Route::get("/", "index")->name("sub.item.category.index");
         Route::post("/create", "store")->name("sub.item.category.store");
+        Route::post("/status", "status")->name("sub.item.category.status");
+        Route::get("/edit/{id}", "edit")->name("sub.item.category.edit");
+        Route::post("/delete", "delete")->name("sub.item.category.delete");
+    });
+
+    // SUB ITEMS 
+    Route::prefix("sub-items")->controller(SubItemController::class)->group(function(){
+        Route::get("/", "index")->name("admin.subitem.index");
+        Route::post("/store", "store")->name("admin.subitem.store");
+        Route::get("/edit/{id}", "edit")->name("admin.subitem.edit");
+        Route::post("/update", "update")->name("admin.subitem.update");
+        Route::post("/delete", "delete")->name("admin.subitem.delete");
     });
 
     // Products

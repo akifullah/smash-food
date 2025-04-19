@@ -34,7 +34,8 @@
                                                     <tr>
                                                         <td>{{ $key + 1 }}</td>
                                                         <td>
-                                                            <img src="{{ asset('uploads/categories/' . $category->image) }}" width="100" />
+                                                            <img src="{{ asset('uploads/categories/' . $category->image) }}"
+                                                                width="100" />
                                                         </td>
                                                         <td>{{ $category->name }}</td>
 
@@ -87,7 +88,8 @@
                 url: "{{ route('admin.categories.status', ':id') }}".replace(':id', id),
                 type: "GET",
                 success: function(response) {
-                    if(response.success){
+                    if (response.success) {
+                        window.location.reload();
                         notify('Status updated successfully', 'success');
                     }
                 }

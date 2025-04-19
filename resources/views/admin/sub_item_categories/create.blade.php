@@ -26,7 +26,7 @@
                                             <input type="file" class="form-control" name="image" id="image">
                                         </div>
                                         <div class="form-group mt-3 col-6">
-                                            <button class="btn btn-success">Save</button>
+                                            <button type="button" class="btn bg-success btn-success">Save</button>
                                         </div>
                                     </form>
 
