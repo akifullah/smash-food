@@ -15,7 +15,8 @@
                 <div class="card-body">
 
 
-                    <form action="{{ route('admin.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.update', $product->id) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row mt-3">
                             <h3>Item Information</h3>
@@ -54,12 +55,81 @@
                             <div class="col-6 form-group mt-3">
                                 <label for="image">Item Image:</label>
                                 <input type="file" class="form-control" name="image" id="image">
-                                <img src="{{ asset('uploads/products/'.$product->image) }}" alt="" style="width: 100px; height: 100px;">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt=""
+                                    style="width: 100px; height: 100px;">
                                 @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="row mt-5" id="category_as_extra_section" style="display:none;">
+
+
+
+                            <div class=" col-12 mt-3">
+                                <h1 class=" h3 fw-bold">Add Addons</h1>
+                                <div class="" id="addons">
+
+                                    @foreach ($product->productSubItemCategory as $subCategory)
+                                        <div class="row mt-3" data-category-id="3">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>{{$subCategory->subItemCategory->name}}
+                                                    </label>
+                                                    <input type="text" name="sub_item_category_id[]" value="{{$subCategory->subItemCategory->id}}"
+                                                        class="form-control" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Selection Type</label>
+                                                    <select name="selection_type[]"  class="form-select" required="">
+                                                        <option value="single" {{ $subCategory->selection_type == 'single' ? 'selected' : '' }}>Single</option>
+                                                        <option value="multiple" {{ $subCategory->selection_type == 'multiple' ? 'selected' : '' }}>Multiple</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Is Required</label>
+                                                    <select name="is_required[]"  class="form-select" required="">
+                                                        <option value="0" {{ $subCategory->is_required == 0 ? 'selected' : '' }}>No</option>
+                                                        <option value="1" {{ $subCategory->is_required == 1 ? 'selected' : '' }}>Yes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Min Req. Quantity</label>
+                                                    <input type="number" name="min_qty[]" class="form-control"
+                                                        value="{{ $subCategory->min_qty }}">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    @endforeach
+                                    <!-- Form fields will be dynamically appended here via JavaScript -->
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Name">Add Sub Category:</label>
+                                            <select class="form-control" id="sub_item_category_id">
+                                                <option value="">Select Sub Category</option>
+                                                @foreach ($subCategories as $subCategory)
+                                                    <option value="{{ $subCategory->id }}">{{ $subCategory->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {{-- <div class="row mt-5" id="category_as_extra_section" style="display:none;">
 
                                 <div class="col-4 form-group mt-3">
                                     <label for="Name"> Order Of Showing:</label>
@@ -168,7 +238,7 @@
                                 <button type="button" class="btn btn-success bg-success"
                                     onclick="add_category_as_extra()">Use
                                     Category As Extras</button>
-                            </div>
+                            </div> --}}
 
 
                             <div class="col-12 mt-5">
@@ -198,6 +268,80 @@
     <script src="https://smashinit.co.uk/assets/libs/select2/dist/js/select2.min.js"></script>
     <script src="https://smashinit.co.uk/dist/js/pages/forms/select2/select2.init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            let selectedCategories = new Set();
+
+            function updateCategoryOptions() {
+                // Hide already selected categories from dropdown
+                $('#sub_item_category_id option').show();
+                selectedCategories.forEach(categoryId => {
+                    $(`#sub_item_category_id option[value="${categoryId}"]`).hide();
+                });
+            }
+
+            $('#sub_item_category_id').on('change', function() {
+                var categoryId = $(this).val();
+                if (categoryId) {
+                    // Don't clear previous fields, just append new ones
+                    if (!selectedCategories.has(categoryId)) {
+                        selectedCategories.add(categoryId);
+
+                        // Get the selected category name
+                        var categoryName = $('#sub_item_category_id option:selected').text();
+
+                        // Create form fields with category ID in the name
+                        var html = `
+                            <div class="row mt-3" data-category-id="${categoryId}">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>${categoryName}</label>
+                                        <input type="text" name="sub_item_category_id[${categoryId}]" value="${categoryId}" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Selection Type</label>
+                                        <select name="selection_type[${categoryId}]" class="form-select" required>
+                                            <option value="single">Single</option>
+                                            <option value="multiple">Multiple</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Is Required</label>
+                                        <select name="is_required[${categoryId}]" class="form-select" required>
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Min Req. Quantity</label>
+                                        <input type="number" name="min_qty[${categoryId}]" class="form-control" value="1">
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        `;
+
+                        $('#addons').append(html);
+                        updateCategoryOptions();
+                    }
+                }
+            });
+
+            // Initial update of category options
+            updateCategoryOptions();
+        });
+    </script>
+
+
+
 
     <script>
         $(document).ready(function() {

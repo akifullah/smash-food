@@ -778,7 +778,7 @@
     let menuHandle = document.querySelector("#menu-popup-handle");
     let mainMenu = document.querySelector("#main-menu");
 
-    menuHandle.addEventListener("click", () => {
+    menuHandle?.addEventListener("click", () => {
         mainMenu.classList.toggle("show");
     })
 </script>

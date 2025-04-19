@@ -11,7 +11,7 @@
     <script src="{{asset('frontend/assets/js/bootstrap.min.js')}}"></script>
     <!-- Layer Slider -->
     <script src="{{asset('frontend/assets/js/greensock.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/layerslider.kreaturamedia.jquery.js')}}"></script>
+    {{-- <script src="{{asset('frontend/assets/js/layerslider.kreaturamedia.jquery.js')}}"></script> --}}
     <script src="{{asset('frontend/assets/js/layerslider.transitions.js')}}"></script>
     <!-- Counter js -->
     <script src="{{asset('frontend/assets/js/jquery.counterup.min.js')}}"></script>
@@ -27,9 +27,9 @@
     <!-- Mobile Menu -->
     <script src="{{asset('frontend/assets/js/vsmenu.min.js')}}"></script>
     <!-- Form Js -->
-    <script src="{{asset('frontend/assets/js/ajax-mail.js')}}"></script>
+    {{-- <script src="{{asset('frontend/assets/js/ajax-mail.js')}}"></script> --}}
     <!-- Google Map js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ "></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ "></script> --}}
     <!-- Main Js File -->
     <script src="{{asset('frontend/assets/js/main.js')}}"></script>
     

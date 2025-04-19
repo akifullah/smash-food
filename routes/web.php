@@ -25,7 +25,11 @@ Route::controller(HomeController::class)->group(function () {
     Route::get("/", "index")->name("home.index");
     Route::get("/about", "about")->name("about");
     Route::get("/contact", "contact")->name("contact");
-    Route::get("/categories", "category")->name("home.category");
+    
+    Route::prefix("categories")->group(function(){
+        Route::get("/", "category")->name("home.category");
+        Route::get("/{id}", "categoryItems")->name("home.category.items");
+    });
 });
 
 

@@ -97,14 +97,22 @@ class ProductController extends Controller
     }
     public function edit($id)
     {
-        $data["product"] = Product::with('subItemCategory', 'subItemCategory.subItem')->find($id);
+        $data["product"] = Product::with("category", "productSubItemCategory.subItemCategory")->find($id);
+        // Get all active sub categories except ones already used by this product
+        $data["subCategories"] = SubItemCategory::whereStatus(1)
+            ->whereNotIn('id', $data["product"]->productSubItemCategory->pluck('sub_item_category_id'))
+            ->get();
+        // return $data;
         $data["categories"] = Category::whereStatus(1)->get();
+
         return view("admin.products.edit", $data);
     }
 
 
     public function update(Request $request, $id)
     {
+        // return $request->all();
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
@@ -114,6 +122,24 @@ class ProductController extends Controller
             notify()->error('Please fill all the required fields');
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        
+        
+        // Delete existing product sub item categories
+        ProductSubItemCategory::where('product_id', $id)->delete();
+
+        // Create new product sub item categories
+        if ($request->has('sub_item_category_id')) {
+            foreach ($request->sub_item_category_id as $key => $subItemCategoryId) {
+                ProductSubItemCategory::create([
+                    'product_id' => $id,
+                    'sub_item_category_id' => $subItemCategoryId,
+                    'selection_type' => $request->selection_type[$key],
+                    'is_required' => $request->is_required[$key],
+                    'min_qty' => $request->min_qty[$key]
+                ]);
+            }
+        }
+       
         $product = Product::find($id);
         $product->name = $request->name;
         $product->category_id = $request->category_id;
@@ -141,6 +167,8 @@ class ProductController extends Controller
             unlink(public_path('uploads/products/' . $product->image));
         }
         $product->delete();
+        // Delete all product sub item categories
+        ProductSubItemCategory::where('product_id', $id)->delete();
         notify()->success('Product deleted successfully');
         return redirect()->route('admin.products.index');
     }
