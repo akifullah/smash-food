@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductSubItemCategory;
 use App\Models\SubItem;
 use App\Models\SubItemCategory;
 use Illuminate\Http\Request;
@@ -21,6 +22,19 @@ class ProductController extends Controller
     public function index()
     {
         $data["products"] = Product::with('category')->get();
+        // $data['products'] = Product::with([
+        //     'category:id,name',
+        //     'productSubItemCategory' => function ($query) {
+        //         $query->select('id', 'product_id', 'sub_item_category_id', 'is_required', 'selection_type');
+        //     },
+        //     'productSubItemCategory.subItemCategory' => function ($query) {
+        //         $query->select('id', 'name', 'image');
+        //     },
+        //     'productSubItemCategory.subItemCategory.subItem' => function ($query) {
+        //         $query->select('id', 'sub_item_category_id', 'name', 'price', 'image');
+        //     },
+        // ])->get();
+        // return $data;
         return view("admin.products.list", $data);
     }
 
@@ -28,12 +42,13 @@ class ProductController extends Controller
     public function create()
     {
         $data["categories"] = Category::whereStatus(1)->get();
+        $data["subCategories"] = SubItemCategory::whereStatus(1)->get();
         return view("admin.products.create", $data);
     }
 
     public function store(Request $request)
     {
-       
+        // return $request->all();
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
@@ -60,40 +75,29 @@ class ProductController extends Controller
         $product->status = $request->status ?? 1;
         $product->save();
 
-        if ($request->has('manual_extra_section_count') && is_array($request->manual_extra_section_count)) {
-            foreach ($request->manual_extra_section_count as $index) {
-                $category = SubItemCategory::create([
-                    'section_order' => $request->manual_extra_section_order[$index],
-                    'section_title' => $request->manual_extra_section_title[$index],
-                    'section_type'  => $request->manual_extra_type[$index],
-                    'product_id'    => $product->id,
-                ]);
+        if ($request->has('sub_item_category_id')) {
 
-                foreach ($request->manual_extra_details_count[$index] as $key => $item) {
-                    if ($request->manual_extra_image[$index][$key]) {
-                        $file = $request->file('manual_extra_image')[$index][$key];
-                        
-                        $filename = time() . '_' . $index . '_' . $key . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('uploads/products/sub_items/'), $filename);
-                        $image = $filename;
-                    }
-                    SubItem::create([
-                        'sub_item_category_id' => $category->id,
-                        'sub_items_title'     => $request->manual_extra_title[$index][$key],
-                        'sub_items_price'      => $request->manual_extra_price[$index][$key],
-                        'sub_items_image'     => $image ?? "",
-                        'product_id'           => $product->id,
-                    ]);
-                }
-            }
-        }
+            foreach ($request->sub_item_category_id as $key => $subItemCategoryId) {
+                $productSubItemCategory =  ProductSubItemCategory::create(
+                    [
+                        'product_id' => $product->id,
+                        'sub_item_category_id' => $subItemCategoryId,
+                        'selection_type' => $request->selection_type[$key],
+                        'is_required' => $request->is_required[$key],
+                        'min_qty' => $request->min_qty[$key]
+                    ]
+                );
+            };
+        };
+
+
 
         notify()->success('Product created successfully');
         return redirect()->route('admin.products.index');
     }
     public function edit($id)
     {
-        $data["product"] = Product::with('subItemCategory','subItemCategory.subItem')->find($id);
+        $data["product"] = Product::with('subItemCategory', 'subItemCategory.subItem')->find($id);
         $data["categories"] = Category::whereStatus(1)->get();
         return view("admin.products.edit", $data);
     }

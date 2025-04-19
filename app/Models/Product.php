@@ -13,5 +13,8 @@ class Product extends Model
     public function subItemCategory(){
         return $this->hasMany(SubItemCategory::class);
     }
+    public function productSubItemCategory(){
+        return $this->hasMany(ProductSubItemCategory::class);
+    }
 
 }
